@@ -1,0 +1,266 @@
+From: "Saved by Windows Internet Explorer 8"
+Subject: Homework 4
+Date: Sun, 9 Oct 2011 23:31:41 -0400
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01CC86DB.99782750"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.0.6002.18463
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01CC86DB.99782750
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cs.fsu.edu/~lacher/courses/COP3330/assigns/hw4.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Homework 4</TITLE>
+<META content=3D"text/html; charset=3Dwindows-1252" =
+http-equiv=3DContent-Type>
+<META name=3DGENERATOR content=3D"MSHTML 8.00.6001.19120">
+<STYLE type=3Dtext/css>@import url( =
+http://www.cs.fsu.edu/~lacher/styles/RCLstyle1.css );
+</STYLE>
+</HEAD>
+<BODY aLink=3D#808080 link=3Dblack vLink=3Dblack><!--=0A=
+<center>=0A=
+<h1><font color=3D#990000>DRAFT: Open for comment in the discussion =
+forum.</font></h1>=0A=
+</center>=0A=
+-->
+<CENTER>
+<H1>Homework 4: UIntSet</H1></CENTER>
+<P><B>Educational Objectives.</B> After successfully completing this =
+assignment,=20
+the student should be able to accomplish the following: </P>
+<UL>
+  <LI>Design a class based on non-language-specific specifications=20
+  <LI>Implement a class of your own design=20
+  <LI>Implement constructors, copy constructor, destructor, and =
+assignment=20
+  operator for a class that has resource allocation requirements=20
+  <LI>Global operators for a class=20
+  <LI>Correctly separate class definition and implementation using files =
+
+  <LI>Create executables of class client programs using makefiles and =
+the Make=20
+  utility=20
+  <LI>Test a class using specs and an existing test platform=20
+  <LI>Use <TT>fsu::BitVector</TT> in designing set classes </LI></UL>
+<P><STRONG>Operational Objectives:</STRONG> Define and implement the =
+class=20
+<TT>UIntSet</TT> and deliver the code in two files <TT>uintset.h</TT> =
+and=20
+<TT>uintset.cpp</TT> along with a makefile for the supplied test =
+harness. </P>
+<P><STRONG>Deliverables:</STRONG> <TT>uintset.h</TT>, =
+<TT>uintset.cpp</TT>,=20
+<TT>makefile</TT> </P>
+<H2>Background</H2>
+<P>See lecture notes <A=20
+href=3D"http://www.cs.fsu.edu/~lacher/courses/COP3330/lectures/classes1/t=
+oc.html"=20
+target=3D_blank>Chapter 4. Classes Part 1</A>, <A=20
+href=3D"http://www.cs.fsu.edu/~lacher/courses/COP3330/lectures/pointers/t=
+oc.html"=20
+target=3D_blank>Chapter 5. Pointers</A>, <A=20
+href=3D"http://www.cs.fsu.edu/~lacher/courses/COP3330/lectures/classes2/t=
+oc.html"=20
+target=3D_blank>Chapter 6. Classes Part 2</A>, and <A=20
+href=3D"http://www.cs.fsu.edu/~lacher/courses/COP3330/lectures/bitvectors=
+/toc.html"=20
+target=3D_blank>Chapter 8. BitVectors</A>. </P>
+<H2>Procedural Requirements:</H2>
+<OL type=3D1>
+  <LI>
+  <P>Design the class UIntSet</P>
+  <LI>
+  <P>Implement the class UIntSet with the class definition in file=20
+  <TT>uintset.h</TT> and the class implementation in file=20
+  <TT>uintset.cpp</TT></P>
+  <LI>
+  <P>Thoroughly test class UIntSet, starting out with the supplied test =
+harness=20
+  in file <TT>hw4/test.cpp</TT> using command line compile</P>
+  <LI>
+  <P>Write a makefile that builds <TT>test.x</TT> with the "in lieu of =
+makefile"=20
+  include statement commented out or removed</P>
+  <LI>
+  <P>Test the executable again, and refine your work to withstand =
+testing.
+  <P></P>
+  <LI>
+  <P>Turn in <TT>uintset.h</TT>, <TT>uintset.cpp</TT>, and =
+<TT>makefile</TT>=20
+  using the <TT>hw4submit.sh</TT> submit script. </P>
+  <P><EM><B>Warning:</B> Submit scripts do not work on the =
+<TT>program</TT> and=20
+  <TT>linprog</TT> servers. Use <TT>shell.cs.fsu.edu</TT> to submit =
+projects. If=20
+  you do not receive the second confirmation with the contents of your =
+project,=20
+  there has been a malfunction.</EM> </P></LI></OL>
+<H2>Technical Requirements and Specifications</H2>
+<OL>
+  <LI>
+  <P>The class should implement the following diagram:=20
+  <P>
+  <TABLE border=3D4 cellSpacing=3D0>
+    <TBODY>
+    <TR>
+      <TD vAlign=3Dtop><EM>Class Name:</EM></TD>
+      <TD><PRE>  UIntSet</PRE></TD></TR>
+    <TR>
+      <TD vAlign=3Dtop><EM>Services&nbsp;:</EM>&nbsp; </TD>
+      <TD><PRE>  void        Insert   ( unsigned long n )        // =
+inserts n into set
+  void        Remove   ( unsigned long n )        // removes n from set
+  void        Clear    ()                         // makes set empty
+  bool        Member   ( unsigned long n ) const  // returns true iff n =
+is in set
+
+  bool        Empty    () const;   // true iff set is empty
+  size_t      Size     () const;   // returns number of elements in set
+  size_t      Range    () const;   // returns upper bound of =
+range/universe [0,ub)
+
+  UIntSet&amp; operator =3D  (const UIntSet&amp; s);  // set =3D s =
+(assignment operator)
+  UIntSet&amp; operator +=3D (const UIntSet&amp; s);  // set =3D set =
+union s
+  UIntSet&amp; operator *=3D (const UIntSet&amp; s);  // set =3D set =
+intersection s
+  UIntSet&amp; operator -=3D (const UIntSet&amp; s);  // set =3D set =
+difference s
+</PRE></TD></TR>
+    <TR>
+      <TD vAlign=3Dtop><EM>Properties&nbsp;:</EM>&nbsp; </TD>
+      <TD><PRE>  Constructable: objects can be declared as ordinary =
+variables, max size may be specified
+  Assignable:    objects can be assigned one to another
+  Passable:      objects can be passed by value to and returned as =
+values from functions&nbsp;&nbsp;
+</PRE></TD></TR>
+    <TR>
+      <TD vAlign=3Dtop><EM>Private variables:</EM></TD>
+      <TD><PRE>  size_t         size_;  // the size of the current set
+  fsu::BitVector bv_;    // bit vector representing set
+</PRE></TD></TR>
+    <TR>
+      <TD vAlign=3Dtop><EM>Global operators:&nbsp;</EM></TD>
+      <TD><PRE>  UIntSet operator + (const UIntSet&amp; s1, const =
+UIntSet&amp; s2);  // returns s1 union s2
+  UIntSet operator * (const UIntSet&amp; s1, const UIntSet&amp; s2);  // =
+returns s1 intersection s2=20
+  UIntSet operator - (const UIntSet&amp; s1, const UIntSet&amp; s2);  // =
+returns s1 difference s2
+  std::ostream&amp; operator &lt;&lt; (std::ostream&amp; os, const =
+UIntSet&amp; s); // output operator
+</PRE></TD></TR></TBODY></TABLE></TD></TR></TABLE></P>
+  <LI>
+  <P>The class should be a proper type, to include default and =
+1-argument=20
+  constructor, copy constructor, assignment operator, and destructor. =
+The=20
+  constructor argument sets the maximum size of unsigned integers that =
+can=20
+  belong to the set. Default maximum element size is 64. </P>
+  <LI>
+  <P>The output operator <TT>operator&lt;&lt; </TT>should be overloaded =
+for the=20
+  type <TT>UIntSet</TT>. Output should be "<TT>{ 0 6 12 18 }</TT>" for =
+the set=20
+  containing elements 0, 6, 12, 18. </P>
+  <LI>
+  <P>Global binary operators <TT>operator+</TT>, <TT>operator*</TT>,=20
+  <TT>operator-</TT> should be overloaded for the type <TT>UIntSet</TT>. =
+The=20
+  syntax and semantics of these operators are as follows: </P>
+  <BLOCKQUOTE><PRE>UIntSet(200) s1, s2, s3; // three empty sets with =
+range [0,1,2,...,200)
+s2.Insert(2); s2.Insert(3); s2.Insert(4);
+s3.Insert(2); s3.Insert(4); s3.Insert(6);
+std::cout &lt;&lt; s2;  // prints { 2 3 4 }
+s1 =3D s2 + s3; // s1 is the set union of s2 and s3
+std::cout &lt;&lt; s1;  // prints { 2 3 4 6 }
+s1 =3D s2 * s3; // s1 is the set intersection of s2 and s3
+std::cout &lt;&lt; s1;  // prints { 2 4 }
+s1 =3D s2 - s3; // s1 is the set difference of s2 and s3
+std::cout &lt;&lt; s1;  // prints { 3 }
+</PRE></BLOCKQUOTE>
+  <P></P>
+  <LI>
+  <P>UIntSet should pass testing with the supplied <TT>hw4/test.cpp</TT> =
+with no=20
+  compile or runtime errors and no compiler warnings when the warning =
+flags=20
+  <TT>-W</TT>, <TT>-Wall</TT>, <TT>-Wextra</TT> are set. </P>
+  <LI>
+  <P>Building and running the supplied <TT>hw4/test.cpp</TT> should =
+result in=20
+  output identical to the supplied executable =
+<TT>area51/settest_?.x</TT> [? =3D=20
+  <TT>i</TT> or <TT>s</TT>] . </P></LI></OL><!--=0A=
+<p><strong>Hints</strong></p>=0A=
+=0A=
+<ul>=0A=
+<li></li>=0A=
+<li></li>=0A=
+<li></li>=0A=
+<li></li>=0A=
+<li></li>=0A=
+<li></li>=0A=
+</ul>=0A=
+--></BODY></HTML>
+
+------=_NextPart_000_0000_01CC86DB.99782750
+Content-Type: text/css;
+	charset="windows-1256"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cs.fsu.edu/~lacher/styles/RCLstyle1.css
+
+PRE {
+	FONT-FAMILY: Courier New, Fixedsys; FONT-SIZE: 10pt
+}
+TT {
+	FONT-FAMILY: Courier New, Fixedsys; FONT-SIZE: 10pt
+}
+P {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+H1 {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 12pt; FONT-WEIGHT: bold
+}
+H2 {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold
+}
+H3 {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold
+}
+UL {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+LI {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+DL {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+DT {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+DD {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+EM {
+	FONT-STYLE: italic; FONT-FAMILY: Verdana, sans-serif; COLOR: #990000; =
+FONT-SIZE: 10pt
+}
+TD {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+
+------=_NextPart_000_0000_01CC86DB.99782750--
